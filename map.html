@@ -99,13 +99,14 @@
       </tr>
     </table>
      </div>
-    <div id="map-container">
-        <div id="map" style="height:250px;"></div>
-        <div id="elevation"></div>
+      <div id="elevation"></div>
         <div id="mapgame"></div>
         <div id="earthquake"></div>
         <div id="traffic"></div>
         <div id="streetview"></div>
+    <div id="map-container">
+        <div id="map" style="height:250px;"></div>
+       
       <script>
        // This example displays an address form, using the autocomplete feature
       // of the Google Places API to help users fill in the information.
@@ -113,7 +114,7 @@
       // This example requires the Places library. Include the libraries=places
       // parameter when you first load the API. For example:
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-      var map;
+      var map, marker;
       var placeSearch, autocomplete;
       var componentForm = {
         street_number: 'short_name',
@@ -205,6 +206,8 @@
             'src',
             'https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json');
         document.getElementsByTagName('head')[0].appendChild(script);
+        var trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(map);
       }
 
       // Defines the callback function referenced in the jsonp file.
@@ -265,7 +268,9 @@
         'elementType': 'geometry',
         'stylers': [{'visibility': 'on'}, {'hue': '#5f94ff'}, {'lightness': 60}]
       }];
-
+ 
+     
+    
       function initialize (){
      initMap();
    initAutocomplete();
