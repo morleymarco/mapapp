@@ -57,6 +57,55 @@
         margin: 0;
         padding: 0;
       }
+      #address {
+       /* display: none;*/
+       color: black;
+        transition: color 2s, ease-in;
+        --webkit-transition: 1s 2s color linear;
+        /*visibility: hidden;
+  opacity: 0;*/
+
+      }
+           
+#addressdiv {
+    width: 1px;
+    height: 1px;
+
+    background: lightgrey;
+    color: black;
+    -webkit-transition: width 2s, height 2s, -webkit-transform 2s; /* Safari */
+    transition: width 2s, height 2s, transform 2s;
+    -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+    animation-name: example;
+    animation-duration: 4s;
+}
+
+
+/*#addressdiv:hover {
+    width: 560px;
+    height: 230px;
+    background: lightblue;
+    color: white;
+    -webkit-transform: rotate(180deg); /* Safari 
+    transform: rotate(180deg);
+}*/
+#address {
+   background-color: black;
+
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+    from {background-color: black;}
+    to {background-color:  #f0f0ff;}
+}
+
+/* Standard syntax */
+@keyframes example {
+    from {background-color: black;}
+    to {background-color:  #f0f0ff;}
+}
+
     </style>
     <script src="https://www.google.com/jsapi"></script>
   </head>
@@ -66,7 +115,7 @@
       <input id="autocomplete" placeholder="Enter your address"
              onFocus="geolocate()" type="text"></input>
     </div>
-
+<div id="addressdiv">
     <table id="address">
       <tr>
         <td class="label">Street address</td>
@@ -98,6 +147,7 @@
               id="country" disabled="true"></input></td>
       </tr>
     </table>
+  </div>
      </div>
       <div id="elevation"></div>
         <div id="mapgame"></div>
@@ -138,6 +188,28 @@
       }
 
       function fillInAddress() {
+
+        var addressdiv = document.getElementById("addressdiv");
+        addressdiv.style.width = "480px";
+         addressdiv.style.height= "100px";
+        addressdiv.style.background= "lightblue";
+        addressdiv.style.color= "white";
+        addressdiv.style.WebkitTransform= "rotate(360deg)"; /* Safari */
+        addressdiv.style.transform= "rotate(360deg)";
+        var addressTable =document.getElementById("address");
+        addressTable.style.WebkitAnimationName = "example";
+        addressTable.style.WebkitAnimationDuration = "4s";
+        addressTable.style.animation= "example 4s linear 0.5s 1 forwards";
+  
+         //addressTable.style.transition="visibility 1s, opacity 2.5s, ease-in";
+         //addressTable.style.WebkitTransition="visibility 1s, opacity 2.5s, ease-in";
+         //addressTable.style.MozTransition="visibility 1s, opacity 2.5s, ease-in";
+        // addressTable.style.opacity= 1;
+         //addressTable.style.visibility="visible";
+         // document.getElementById('fade').style.WebkitTransition = 'opacity 1s';
+         // document.getElementById('fade').style.MozTransition = 'opacity 1s';
+
+          //transition: visibility 1s, opacity 2.5s ease-in;
         // Get the place details from the autocomplete object.
         var place = autocomplete.getPlace();
         if (place.geometry.viewport) {
@@ -217,8 +289,13 @@
         map.addListener('click', function(event) {
           displayLocationElevation(event.latLng, elevator, infowindow);
         });
+
+        //enable the game
          (new PuzzleDemo).init(map);
+
+
       }
+
        function displayLocationElevation(location, elevator, infowindow) {
         // Initiate the location request
         elevator.getElevationForLocations({
