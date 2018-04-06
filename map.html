@@ -59,7 +59,7 @@
       }
       #address {
        /* display: none;*/
-       color: black;
+       color: lightgrey;
         transition: color 2s, ease-in;
         --webkit-transition: 1s 2s color linear;
         /*visibility: hidden;
@@ -75,86 +75,159 @@
     color: black;
     -webkit-transition: width 2s, height 2s, -webkit-transform 2s; /* Safari */
     transition: width 2s, height 2s, transform 2s;
-    -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
-    animation-name: example;
-    animation-duration: 4s;
+   
 }
 
 
-/*#addressdiv:hover {
-    width: 560px;
-    height: 230px;
-    background: lightblue;
-    color: white;
-    -webkit-transform: rotate(180deg); /* Safari 
-    transform: rotate(180deg);
-}*/
+  
 #address {
-   background-color: black;
+   background-color: white;
 
 }
 /* Safari 4.0 - 8.0 */
-@-webkit-keyframes example {
-    from {background-color: black;}
-    to {background-color:  #f0f0ff;}
+@-webkit-keyframes initialTable {
+    from {
+      background-color: black;
+      color: lightgrey;
+    }
+    to {
+      background-color:  #f0f0ff;
+      color: black;
+    }
 }
 
 /* Standard syntax */
-@keyframes example {
-    from {background-color: black;}
-    to {background-color:  #f0f0ff;}
+@keyframes initialTable {
+    from {
+      background-color: black;
+    color: lightgrey;
+  }
+    to {
+      background-color:  #f0f0ff;
+      color: black;
+    }
 }
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes restoreTable {
+   
+    to {
+      background-color:  #f0f0ff;
+      color: black;
+    }
+}
+
+/* Standard syntax */
+@keyframes restoreTable {
+    
+    to {
+      background-color:  #f0f0ff;
+      color: black;
+    }
+}
+@-webkit-keyframes nightmodeTable {
+   /* from {
+      background-color: #f0f0ff;
+      color: black;
+    }*/
+    to {
+      background-color: darkgrey;
+      color: #dd2527;
+    }
+}
+
+/* Standard syntax */
+@keyframes nightmodeTable {
+    /*from {
+      background-color: #f0f0ff;
+      color: black;
+    }*/
+    to {
+      background-color: darkgrey;
+      color: #dd2527;
+    }
+}
+
+.map-control {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
+        font-family: 'Roboto','sans-serif';
+        margin: 10px;
+        /* Hide the control initially, to prevent it from appearing
+           before the map loads. */
+        display: none;
+      }
+      /* Display the control once it is inside the map. */
+      #map .map-control { display: block; }
+
+      .selector-control {
+        font-size: 14px;
+        line-height: 30px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
 
     </style>
     <script src="https://www.google.com/jsapi"></script>
   </head>
   <body>
-     <div id="addressbar">
-        <div id="locationField">
-      <input id="autocomplete" placeholder="Enter your address"
-             onFocus="geolocate()" type="text"></input>
-    </div>
-<div id="addressdiv">
-    <table id="address">
-      <tr>
-        <td class="label">Street address</td>
-        <td class="slimField"><input class="field" id="street_number"
-              disabled="true"></input></td>
-        <td class="wideField" colspan="2"><input class="field" id="route"
-              disabled="true"></input></td>
-      </tr>
-      <tr>
-        <td class="label">City</td>
-        <!-- Note: Selection of address components in this example is typical.
-             You may need to adjust it for the locations relevant to your app. See
-             https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
-        -->
-        <td class="wideField" colspan="3"><input class="field" id="locality"
-              disabled="true"></input></td>
-      </tr>
-      <tr>
-        <td class="label">State</td>
-        <td class="slimField"><input class="field"
-              id="administrative_area_level_1" disabled="true"></input></td>
-        <td class="label">Zip code</td>
-        <td class="wideField"><input class="field" id="postal_code"
-              disabled="true"></input></td>
-      </tr>
-      <tr>
-        <td class="label">Country</td>
-        <td class="wideField" colspan="3"><input class="field"
-              id="country" disabled="true"></input></td>
-      </tr>
-    </table>
-  </div>
-     </div>
-      <div id="elevation"></div>
-        <div id="mapgame"></div>
-        <div id="earthquake"></div>
-        <div id="traffic"></div>
-        <div id="streetview"></div>
+    <div id="addressbar">
+      <div id="locationField">
+        <input id="autocomplete" placeholder="Enter your address"
+          onFocus="geolocate()" type="text"></input>
+      </div>
+      <div id="addressdiv">
+        <table id="address">
+          <tr>
+            <td class="label">Street address</td>
+            <td class="slimField"><input class="field" id="street_number"
+                 disabled="true"></input></td>
+            <td class="wideField" colspan="2"><input class="field" id="route"
+                disabled="true"></input></td>
+          </tr>
+          <tr>
+            <td class="label">City</td>
+    <!-- Note: Selection of address components in this example is typical.
+         You may need to adjust it for the locations relevant to your app. See
+         https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+    -->
+            <td class="wideField" colspan="3"><input class="field" id="locality"
+                disabled="true"></input></td>
+          </tr>
+          <tr>
+            <td class="label">State</td>
+            <td class="slimField"><input class="field"
+                id="administrative_area_level_1" disabled="true"></input></td>
+            <td class="label">Zip code</td>
+            <td class="wideField"><input class="field" id="postal_code"
+                disabled="true"></input></td>
+          </tr>
+          <tr>
+            <td class="label">Country</td>
+            <td class="wideField" colspan="3"><input class="field"
+                id="country" disabled="true"></input></td>
+          </tr>
+        </table>
+      </div>
+
+    
+    <div id="elevation"></div>
+    <div id="mapgame"></div>
+    <div id="earthquake"></div>
+    <div id="traffic"></div>
+    <div id="streetview"></div>
     <div id="map-container">
+
+    <div id="style-selector-control"  class="map-control">
+    <select id="style-selector" class="selector-control">
+    <option value="default">Default</option>
+    <option value="night">Night mode</option>
+   <!--<option value="terrain">Terrain mode</option>-->
+    <option value="hiding">Hide features</option>
+    </select>
+    </div>
+
         <div id="map" style="height:600px;"></div>
        
       <script>
@@ -166,6 +239,8 @@
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
       var map, marker;
       var placeSearch, autocomplete;
+      var addressTableDisplayed = false;
+      var isnightMode = false;
       var componentForm = {
         street_number: 'short_name',
         route: 'long_name',
@@ -197,9 +272,11 @@
         addressdiv.style.WebkitTransform= "rotate(360deg)"; /* Safari */
         addressdiv.style.transform= "rotate(360deg)";
         var addressTable =document.getElementById("address");
-        addressTable.style.WebkitAnimationName = "example";
+        addressTable.style.WebkitAnimationName = "initialTable";
         addressTable.style.WebkitAnimationDuration = "4s";
-        addressTable.style.animation= "example 4s linear 0.5s 1 forwards";
+        addressTable.style.animation= "initialTable 4s linear 0.5s 1 forwards";
+        addressTableDisplayed =true;
+
   
          //addressTable.style.transition="visibility 1s, opacity 2.5s, ease-in";
          //addressTable.style.WebkitTransition="visibility 1s, opacity 2.5s, ease-in";
@@ -269,7 +346,64 @@
           mapTypeId: 'terrain'
         });
 
-        map.data.setStyle(styleFeature);
+        //set earthquake style
+       map.data.setStyle(styleFeature);
+
+        // Add a style-selector control to the map.
+        var styleControl = document.getElementById('style-selector-control');
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(styleControl);
+
+        // Set the map's style to the initial value of the selector.
+        var styleSelector = document.getElementById('style-selector');
+        map.setOptions({styles: styles[styleSelector.value]});
+
+        // Apply new JSON when the user selects a different style.
+        styleSelector.addEventListener('change', function() {
+         
+          
+           if (styleSelector.value=="night" && addressTableDisplayed){
+            isnightMode = true;
+            //map.setOptions({styles: styles[styleSelector.value]}
+            //set game options to night mode
+          //set address table to night mode
+           var addressdiv = document.getElementById("addressdiv");
+        addressdiv.style.width = addressdiv.style.width -1;
+        addressdiv.style.height = addressdiv.style.height -1;
+       
+        addressdiv.style.WebkitTransform= "rotate(360deg)"; /* Safari */
+        addressdiv.style.transform= "rotate(360deg)";
+      
+           var addressTable =document.getElementById("address");
+                addressTable.style.WebkitAnimationName = "nightmodeTable";
+                addressTable.style.WebkitAnimationDuration = "2s";
+                addressTable.style.animation = "nightmodeTable 2s linear 0.5s 1 forwards";
+  
+          //set address bar to night mode
+          //set body to night mode
+
+           }
+           else if (addressTableDisplayed){
+            isnightMode = false;
+            var addressdiv = document.getElementById("addressdiv");
+        addressdiv.style.width = addressdiv.style.width +1;
+        addressdiv.style.height = addressdiv.style.height +1;
+       
+        addressdiv.style.WebkitTransform= "rotate(360deg)"; /* Safari */
+        addressdiv.style.transform= "rotate(360deg)";
+            var addressTable =document.getElementById("address");
+
+            addressTable.style.backgroundColor= "darkgrey";
+                addressTable.style.WebkitAnimationName = "restoreTable";
+                addressTable.style.WebkitAnimationDuration = "2s";
+                addressTable.style.animation = "restoreTable 2s linear 0.5s 1 forwards";
+  
+             
+           }
+        
+        map.setOptions({styles: styles[styleSelector.value]});
+       
+         
+        });
 
         // Get the earthquake data (JSONP format)
         // This feed is a copy from the USGS feed, you can find the originals here:
@@ -281,6 +415,8 @@
         document.getElementsByTagName('head')[0].appendChild(script);
         var trafficLayer = new google.maps.TrafficLayer();
         trafficLayer.setMap(map);
+
+      
          var elevator = new google.maps.ElevationService;
         var infowindow = new google.maps.InfoWindow({map: map});
 
@@ -290,8 +426,10 @@
           displayLocationElevation(event.latLng, elevator, infowindow);
         });
 
+
+
         //enable the game
-         (new PuzzleDemo).init(map);
+         //(new PuzzleDemo).init(map);
 
 
       }
@@ -378,6 +516,108 @@
      
 
 
+var styles = {
+        default: null,
+      
+
+        night: [
+          {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+          {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+          {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+          {
+            featureType: 'administrative.locality',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#d59563'}]
+          },
+          {
+            featureType: 'poi',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#d59563'}]
+          },
+          {
+            featureType: 'poi.park',
+            elementType: 'geometry',
+            stylers: [{color: '#263c3f'}]
+          },
+          {
+            featureType: 'poi.park',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#6b9a76'}]
+          },
+          {
+            featureType: 'road',
+            elementType: 'geometry',
+            stylers: [{color: '#38414e'}]
+          },
+          {
+            featureType: 'road',
+            elementType: 'geometry.stroke',
+            stylers: [{color: '#212a37'}]
+          },
+          {
+            featureType: 'road',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#9ca5b3'}]
+          },
+          {
+            featureType: 'road.highway',
+            elementType: 'geometry',
+            stylers: [{color: '#746855'}]
+          },
+          {
+            featureType: 'road.highway',
+            elementType: 'geometry.stroke',
+            stylers: [{color: '#1f2835'}]
+          },
+          {
+            featureType: 'road.highway',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#f3d19c'}]
+          },
+          {
+            featureType: 'transit',
+            elementType: 'geometry',
+            stylers: [{color: '#2f3948'}]
+          },
+          {
+            featureType: 'transit.station',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#d59563'}]
+          },
+          {
+            featureType: 'water',
+            elementType: 'geometry',
+            stylers: [{color: '#17263c'}]
+          },
+          {
+            featureType: 'water',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#515c6d'}]
+          },
+          {
+            featureType: 'water',
+            elementType: 'labels.text.stroke',
+            stylers: [{color: '#17263c'}]
+          }
+        ],
+          terrain: [
+            {featureType: ''}
+          ],
+
+        
+
+        hiding: [
+          {
+            featureType: 'poi.business',
+            stylers: [{visibility: 'off'}]
+          },
+          {
+            featureType: 'transit',
+            elementType: 'labels.icon',
+            stylers: [{visibility: 'off'}]
+          }
+        ]
+      };
 
 
 
