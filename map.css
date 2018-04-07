@@ -1,0 +1,182 @@
+
+
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+
+      #locationField, #controls {
+        position: relative;
+        width: 480px;
+      }
+      #autocomplete {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 99%;
+      }
+      .label {
+        text-align: right;
+        font-weight: bold;
+        width: 100px;
+        color: #303030;
+      }
+      #address {
+        border: 1px solid #000090;
+        background-color: #f0f0ff;
+        width: 480px;
+        padding-right: 2px;
+      }
+      #address td {
+        font-size: 10pt;
+      }
+      .field {
+        width: 99%;
+      }
+      .slimField {
+        width: 80px;
+      }
+      .wideField {
+        width: 200px;
+      }
+      #locationField {
+        height: 20px;
+        margin-bottom: 2px;
+      }
+    
+      #map {
+        height: 50%;
+        width: 50%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        /*height: 100%;*/
+        margin: auto;
+        padding: 0;
+      }
+      #address {
+       /* display: none;*/
+       color: lightgrey;
+        transition: color 2s, ease-in;
+        --webkit-transition: 1s 2s color linear;
+        /*visibility: hidden;
+  opacity: 0;*/
+
+      }
+           
+#addressdiv {
+    width: 1px;
+    height: 1px;
+
+    background: lightgrey;
+    color: black;
+    -webkit-transition: width 2s, height 2s, -webkit-transform 2s; /* Safari */
+    transition: width 2s, height 2s, transform 2s;
+   
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+   
+}
+  
+#address {
+   background-color: white;
+
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes initialTable {
+    from {
+      background-color: black;
+      color: lightgrey;
+    }
+    to {
+      background-color:  #f0f0ff;
+      color: black;
+    }
+}
+
+/* Standard syntax */
+@keyframes initialTable {
+    from {
+      background-color: black;
+    color: lightgrey;
+  }
+    to {
+      background-color:  #f0f0ff;
+      color: black;
+    }
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes restoreTable {
+   
+    to {
+      background-color:  #f0f0ff;
+      color: black;
+    }
+}
+
+/* Standard syntax */
+@keyframes restoreTable {
+    
+    to {
+      background-color:  #f0f0ff;
+      color: black;
+    }
+}
+@-webkit-keyframes nightmodeTable {
+   /* from {
+      background-color: #f0f0ff;
+      color: black;
+    }*/
+    to {
+      background-color: darkgrey;
+      color: #dd2527;
+    }
+}
+
+/* Standard syntax */
+@keyframes nightmodeTable {
+    /*from {
+      background-color: #f0f0ff;
+      color: black;
+    }*/
+    to {
+      background-color: darkgrey;
+      color: #dd2527;
+    }
+}
+
+.map-control {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
+        font-family: 'Roboto','sans-serif';
+        margin: 10px;
+        /* Hide the control initially, to prevent it from appearing
+           before the map loads. */
+        display: none;
+      }
+      /* Display the control once it is inside the map. */
+      #map .map-control { display: block; }
+
+      .selector-control {
+        font-size: 14px;
+        line-height: 30px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+
+      .fullwidth{
+        width: 50%;
+    
+      }
+      #map{
+        height: 600px;
+      }
+      #windymap{
+        height: 600px;
+      }
+
+
+   
