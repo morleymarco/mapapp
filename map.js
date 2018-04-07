@@ -169,8 +169,24 @@
         postal_code.value=useraddress["postal_code"];
         country.value=useraddress["country"];
         var ac=document.getElementById('autocomplete');
-        ac.value= streetnumber.value + " " + route.value + ", " + city.value + ", " 
-        + state.value + ", " + postal_code.value + " " + country.value;
+        var address_value="";
+        address_value+=streetnumber.value;
+        if(route.value){
+          address_value+=" "+route.value;
+        }
+        if(city.value){
+          address_value+=", "+city.value;
+        }
+        if(state.value){
+          address_value+=", "+state.value;
+        }
+        if(postal_code.value){
+          address_value+=", "+postal_code.value;
+        }
+        if(country.value){
+          address_value+=" "+country.value;
+        }
+        ac.value= address_value;
 
       setwindycoordinates();
      
