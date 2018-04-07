@@ -17,6 +17,8 @@
         country: 'long_name',
         postal_code: 'short_name'
       };
+      var latitude;
+      var longitude;
 
       function initAutocomplete() {
         // Create the autocomplete object, restricting the search to geographical
@@ -31,48 +33,28 @@
       }
 
       function fillInAddress() {
-
-        var addressdiv = document.getElementById("addressdiv");
-        addressdiv.style.width = "480px";
-         addressdiv.style.height= "100px";
-        addressdiv.style.background= "lightblue";
-        addressdiv.style.color= "white";
-        addressdiv.style.WebkitTransform= "rotate(360deg)"; /* Safari */
-        addressdiv.style.transform= "rotate(360deg)";
-        var addressTable =document.getElementById("address");
-        addressTable.style.WebkitAnimationName = "initialTable";
-        addressTable.style.WebkitAnimationDuration = "4s";
-        addressTable.style.animation= "initialTable 4s linear 0.5s 1 forwards";
-        addressTableDisplayed =true;
-
+         animateAddressTable();
   
-         //addressTable.style.transition="visibility 1s, opacity 2.5s, ease-in";
-         //addressTable.style.WebkitTransition="visibility 1s, opacity 2.5s, ease-in";
-         //addressTable.style.MozTransition="visibility 1s, opacity 2.5s, ease-in";
-        // addressTable.style.opacity= 1;
-         //addressTable.style.visibility="visible";
-         // document.getElementById('fade').style.WebkitTransition = 'opacity 1s';
-         // document.getElementById('fade').style.MozTransition = 'opacity 1s';
-
+         
           //transition: visibility 1s, opacity 2.5s ease-in;
         // Get the place details from the autocomplete object.
         var place = autocomplete.getPlace();
         if (place.geometry.viewport) {
-    map.fitBounds(place.geometry.viewport);
-  } else {
-    map.setCenter(place.geometry.location);
-    map.setZoom(17); // Why 17? Because it looks good.
-  }
-  if (!marker) {
-    marker = new google.maps.Marker({
-      map: map,
-      anchorPoint: new google.maps.Point(0, -29)
-    });
-  } else marker.setMap(null);
-  marker.setOptions({
-    position: place.geometry.location,
-    map: map
-  });
+          map.fitBounds(place.geometry.viewport);
+        } else {
+          map.setCenter(place.geometry.location);
+          map.setZoom(17); // Why 17? Because it looks good.
+        }
+        if (!marker) {
+          marker = new google.maps.Marker({
+            map: map,
+            anchorPoint: new google.maps.Point(0, -29)
+          });
+        } else marker.setMap(null);
+        marker.setOptions({
+          position: place.geometry.location,
+          map: map
+        });
         for (var component in componentForm) {
           document.getElementById(component).value = '';
           document.getElementById(component).disabled = false;
@@ -87,6 +69,122 @@
             document.getElementById(addressType).value = val;
           }
         }
+        //store address in local storage
+       latitude = place.geometry.location.lat();
+       longitude = place.geometry.location.lng(); 
+       
+      saveLocal();
+     getuseraddress();
+      setwindycoordinates();
+        //tell user address has been stored
+      }
+      function animateAddressTable(){
+       var address = document.getElementById("address");
+        address.style.display= "table";
+         address.style.width = "100%";
+        address.style.height= "100%";
+        var addressdiv = document.getElementById("addressdiv");
+        addressdiv.style.display= "table";
+        addressdiv.style.width = "480px";
+        addressdiv.style.height= "100px";
+        addressdiv.style.background= "lightblue";
+        addressdiv.style.color= "white";
+        addressdiv.style.WebkitTransform= "rotate(360deg)"; /* Safari */
+        addressdiv.style.transform= "rotate(360deg)";
+        var addressTable =document.getElementById("address");
+        addressTable.style.WebkitAnimationName = "initialTable";
+        addressTable.style.WebkitAnimationDuration = "4s";
+        addressTable.style.animation= "initialTable 4s linear 0.5s 1 forwards";
+        addressTableDisplayed =true;
+      }
+      function saveLocal(){
+        //localStorage.setItem('penColor', penColor);
+        var streetnumber = document.getElementById('street_number');
+        var route = document.getElementById('route');
+        var city = document.getElementById('locality');
+        var state= document.getElementById('administrative_area_level_1');
+        var postal_code = document.getElementById('postal_code');
+        var country = document.getElementById('country');
+        
+        var useraddress = {
+          "streetnumber": streetnumber.value, 
+          "route": route.value,
+          "city": city.value,
+          "state": state.value,
+          "postal_code": postal_code.value,
+          "country": country.value,
+          "latitude": latitude,
+          "longitude": longitude
+        }
+        
+        localStorage.setItem ("address", JSON.stringify(useraddress));
+       
+      }
+      function getuseraddress(){
+        var data = localStorage.getItem("address");
+        var useraddress;
+          if (data){
+            useraddress = JSON.parse(data);
+            
+            latitude=useraddress["latitude"];
+            longitude=useraddress["longitude"];
+            
+          }
+          else{
+            var streetnumber = document.getElementById('street_number');
+            var route = document.getElementById('route');
+            var city = document.getElementById('locality');
+            var state= document.getElementById('administrative_area_level_1');
+            var postal_code = document.getElementById('postal_code');
+            var country = document.getElementById('country');
+            
+            useraddress = {
+              "streetnumber": streetnumber.value, 
+              "route": route.value,
+              "city": city.value,
+              "state": state.value,
+              "postal_code": postal_code.value,
+              "country": country.value,
+              "latitude": latitude,
+              "longitude": longitude
+            }
+            
+          }
+          return useraddress;
+      }
+
+      function restoreLocal(){
+        var useraddress=getuseraddress();
+      
+        var streetnumber = document.getElementById('street_number');
+        var route = document.getElementById('route');
+        var city = document.getElementById('locality');
+        var state= document.getElementById('administrative_area_level_1');
+        var postal_code = document.getElementById('postal_code');
+        var country = document.getElementById('country');
+        streetnumber.value=useraddress["streetnumber"];
+        route.value=useraddress["route"];
+        city.value=useraddress["city"];
+        state.value=useraddress["state"];
+        postal_code.value=useraddress["postal_code"];
+        country.value=useraddress["country"];
+        var ac=document.getElementById('autocomplete');
+        ac.value= streetnumber.value + " " + route.value + ", " + city.value + ", " 
+        + state.value + ", " + postal_code.value + " " + country.value;
+
+      setwindycoordinates();
+     
+
+      }
+      function setwindycoordinates(){
+               
+        if (latitude&&longitude){
+          var windymap=document.getElementById("windymap");
+          windymap.src="https://embed.windy.com/embed2.html?lat="+latitude+"&lon="+longitude+
+          "&zoom=5&level=surface&overlay=wind&menu=&message=true&marker=true&calendar="+
+          "&pressure=true&type=map&location=coordinates&detail=true&detailLat="+latitude+
+          "&detailLon="+longitude+"&metricWind=default&metricTemp=default";
+        }
       }
 
       // Bias the autocomplete object to the user's geographical location,
@@ -94,9 +192,14 @@
       function geolocate() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
+            if (!latitude||!longitude){
+                latitude=position.coords.latitude;
+                longitude=position.coords.longitude;
+            }
+            
             var geolocation = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
+              lat: latitude,
+              lng: longitude
             };
             var circle = new google.maps.Circle({
               center: geolocation,
@@ -107,8 +210,17 @@
         }
       }
        function initMap() {
+        useraddress=getuseraddress();
+        if (useraddress){
+          latitude=useraddress["latitude"];
+          longitude=useraddress["longitude"];
+        }
+       if (!latitude||!longitude){
+                latitude=20;
+                longitude=-160;
+            }
         map = new google.maps.Map(document.getElementById('map'), {
-          center: { lat: 20, lng: -160 },
+          center: { lat: latitude, lng: longitude},
           zoom: 2,
           styles: mapStyle, 
           mapTypeId: 'terrain'

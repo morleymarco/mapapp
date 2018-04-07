@@ -6,14 +6,10 @@
     <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <link type="text/css" rel="stylesheet" href="./map.css">
     <title>261 app map</title>
-    
-  
     <script src="https://www.google.com/jsapi"></script>
   </head>
-  <body>
-    <div id="addressbar">
-      <div class="center">
-
+  <body onload="restoreLocal();">
+    <div class="center col-s-3 col-3" id="addressbar">
       <div id="locationField">
         <input id="autocomplete" placeholder="Enter your address"
           onFocus="geolocate()" type="text"></input>
@@ -29,10 +25,6 @@
           </tr>
           <tr>
             <td class="label">City</td>
-    <!-- Note: Selection of address components in this example is typical.
-         You may need to adjust it for the locations relevant to your app. See
-         https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
-    -->
             <td class="wideField" colspan="3"><input class="field" id="locality"
                 disabled="true"></input></td>
           </tr>
@@ -52,35 +44,37 @@
         </table>
       </div>
     </div>
-
-    <div id="mapwrapper">
-    <div id="elevation"></div>
-    <div id="mapgame"></div>
-    <div id="earthquake"></div>
-    <div id="traffic"></div>
-    <div id="streetview"></div>
-    <div id="map-container">
-
-    <div id="style-selector-control"  class="map-control">
-    <select id="style-selector" class="selector-control">
-    <option value="default">Default</option>
-    <option value="night">Night mode</option>
-   <!--<option value="terrain">Terrain mode</option>-->
-    <option value="hiding">Hide features</option>
-    </select>
+    <div class="col-s-12 col-12">
+      
+      <div id="elevation"></div>
+      <div id="mapgame"></div>
+      <div id="earthquake"></div>
+      <div id="traffic"></div>
+      <div id="streetview"></div>
     </div>
+    <div class="row">
+      <div class="col-s-1 col-1">&nbsp;</div>
+      <div class="col-s-5 col-5 inline">
+        <div id="style-selector-control"  class="map-control">
+          <select id="style-selector" class="selector-control">
+            <option value="default">Default</option>
+            <option value="night">Night mode</option>
+           <!--<option value="terrain">Terrain mode</option>-->
+            <option value="hiding">Hide features</option>
+          </select>
+        </div>
+        <div id="map"></div>    
+        <script src="./map.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8H0qq1jVLjpb8RZaP0gC9PiDyVhx8JzU&libraries=geometry,places&callback=initialize"
+            async defer></script>
+      </div>
 
-        <div id="map"></div>
-       
-    
-      <script src="./map.js"></script>
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8H0qq1jVLjpb8RZaP0gC9PiDyVhx8JzU&libraries=geometry,places&callback=initialize"
-        async defer></script>
-        
-     </div> 
-     <iframe src="https://www.windy.com" id="windymap" class="fullwidth"></iframe> 
-    
+      <div class="col-s-5 col-5 inline"> 
+
+        <iframe id="windymap" class="fullwidth"  src="https://embed.windy.com/embed2.html?lat=40.650&lon=-112.015&zoom=5&level=surface&overlay=wind&menu=&message=true&marker=true&calendar=&pressure=true&type=map&location=coordinates&detail=true&detailLat=40.650&detailLon=-112.015&metricWind=default&metricTemp=default" frameborder="0"></iframe>
+      </div>
+      <div class="col-s-1 col-1">&nbsp;</div>
     </div>
-  </body>
+   </body>
 </html>
 
