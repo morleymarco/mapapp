@@ -189,6 +189,9 @@
         ac.value= address_value;
 
       setwindycoordinates();
+      if (streetnumber.value || route.value || city.value || state.value || postal_code.value || country.value){
+        animateAddressTable();
+      }
      
 
       }
@@ -933,21 +936,25 @@ PuzzleDemo.prototype.removeCountries_ = function() {
   this.polys_ = [];
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-    
-      function initialize (){
-     initMap();
-   initAutocomplete();
+function initialize (){
+  initMap();
+  initAutocomplete();
 }
-      
+
+ function clearaddress(){
+  localStorage.clear();
+   var streetnumber = document.getElementById('street_number');
+        var route = document.getElementById('route');
+        var city = document.getElementById('locality');
+        var state= document.getElementById('administrative_area_level_1');
+        var postal_code = document.getElementById('postal_code');
+        var country = document.getElementById('country');
+        streetnumber.value="";
+        route.value="";
+        city.value="";
+        state.value="";
+        postal_code.value="";
+        country.value="";
+        var ac=document.getElementById('autocomplete');
+       ac.value="";
+ }     
