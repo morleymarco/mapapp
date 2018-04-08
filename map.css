@@ -41,15 +41,19 @@
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
 }
+#container{
+  background-color: white;
+  color: black;
+}
 
       #locationField, #controls {
         position: relative;
-        width: 480px;
+        width: 75%;
       }
       #autocomplete {
-        position: absolute;
-        top: 0px;
-        left: 0px;
+        position: relative;.
+        float: left;
+        display: inline;
         width: 99%;
       }
       .label {
@@ -184,7 +188,50 @@
       color: #dd2527;
     }
 }
+@-webkit-keyframes nightmodebody {
+    /*from {
+      background-color: white;
+      color: black;
+    }*/
+    to {
+      background-color: black;
+      color: white;
+    }
+}
 
+/* Standard syntax */
+@keyframes nightmodebody {
+    /*from {
+      background-color: white;
+      color: black;
+    }*/
+    to {
+      background-color: black;
+      color: white;
+    }
+}
+@-webkit-keyframes restorebody {
+   /*from{
+    background-color: black;
+      color: white;
+   }*/
+    to {
+      background-color:  white;
+      color: black;
+    }
+}
+
+/* Standard syntax */
+@keyframes restorebody {
+    /*from {
+      background-color: black;
+      color: white;
+    }*/
+    to {
+      background-color:  white;
+      color: black;
+    }
+}
 .map-control {
         background-color: #fff;
         border: 1px solid #ccc;
@@ -224,4 +271,3 @@ box-sizing: initial;
     transition: width 2s, height 2s, transform 2s;
    display: none;
 }
-   

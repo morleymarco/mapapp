@@ -260,42 +260,56 @@
         styleSelector.addEventListener('change', function() {
          
           
-           if (styleSelector.value=="night" && addressTableDisplayed){
+           if (styleSelector.value=="night") {
+
             isnightMode = true;
+            if (addressTableDisplayed){
             //map.setOptions({styles: styles[styleSelector.value]}
             //set game options to night mode
           //set address table to night mode
-           var addressdiv = document.getElementById("addressdiv");
-        addressdiv.style.width = addressdiv.style.width -1;
-        addressdiv.style.height = addressdiv.style.height -1;
-       
-        addressdiv.style.WebkitTransform= "rotate(360deg)"; /* Safari */
-        addressdiv.style.transform= "rotate(360deg)";
-      
-           var addressTable =document.getElementById("address");
-                addressTable.style.WebkitAnimationName = "nightmodeTable";
-                addressTable.style.WebkitAnimationDuration = "2s";
-                addressTable.style.animation = "nightmodeTable 2s linear 0.5s 1 forwards";
-  
+              var addressdiv = document.getElementById("addressdiv");
+              addressdiv.style.width = addressdiv.style.width -1;
+              addressdiv.style.height = addressdiv.style.height -1;
+
+              addressdiv.style.WebkitTransform= "rotate(360deg)"; /* Safari */
+              addressdiv.style.transform= "rotate(360deg)";
+
+              var addressTable =document.getElementById("address");
+              addressTable.style.WebkitAnimationName = "nightmodeTable";
+              addressTable.style.WebkitAnimationDuration = "2s";
+              addressTable.style.animation = "nightmodeTable 2s linear 0.5s 1 forwards";
+            }
+            var body=document.getElementById("container");
+           // body.style.backgroundColor= "black";
+            body.style.WebkitAnimationName="nightmodebody";
+            body.style.WebkitAnimationDuration="2s";
+            body.style.animation = "nightmodebody 2s linear 0.5s 1 forwards";
           //set address bar to night mode
           //set body to night mode
 
            }
-           else if (addressTableDisplayed){
-            isnightMode = false;
-            var addressdiv = document.getElementById("addressdiv");
-        addressdiv.style.width = addressdiv.style.width +1;
-        addressdiv.style.height = addressdiv.style.height +1;
-       
-        addressdiv.style.WebkitTransform= "rotate(360deg)"; /* Safari */
-        addressdiv.style.transform= "rotate(360deg)";
-            var addressTable =document.getElementById("address");
+           else{
+            if (addressTableDisplayed){
+              isnightMode = false;
+              var addressdiv = document.getElementById("addressdiv");
+              addressdiv.style.width = addressdiv.style.width +1;
+              addressdiv.style.height = addressdiv.style.height +1;
 
-            addressTable.style.backgroundColor= "darkgrey";
-                addressTable.style.WebkitAnimationName = "restoreTable";
-                addressTable.style.WebkitAnimationDuration = "2s";
-                addressTable.style.animation = "restoreTable 2s linear 0.5s 1 forwards";
-  
+              addressdiv.style.WebkitTransform= "rotate(360deg)"; /* Safari */
+              addressdiv.style.transform= "rotate(360deg)";
+              var addressTable =document.getElementById("address");
+
+              addressTable.style.backgroundColor= "darkgrey";
+              addressTable.style.WebkitAnimationName = "restoreTable";
+              addressTable.style.WebkitAnimationDuration = "2s";
+              addressTable.style.animation = "restoreTable 2s linear 0.5s 1 forwards";
+            }
+              var body =document.getElementById("container");
+
+              //body.style.backgroundColor= "white";
+              body.style.WebkitAnimationName = "restorebody";
+              body.style.WebkitAnimationDuration = "2s";
+              body.style.animation = "restorebody 2s linear 0.5s 1 forwards";
              
            }
         

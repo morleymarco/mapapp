@@ -9,81 +9,83 @@
     <script src="https://www.google.com/jsapi"></script>
   </head>
   <body onload="restoreLocal();">
-    <div class="row">
-      <div class="col-s-4 col-4">
-        
-      </div>
-      <div class="col-s-3 col-3" id="addressbar">
-        <div id="locationField">
-          <input id="autocomplete" placeholder="Enter your address"
-            onFocus="geolocate()" type="text">
+    <div id="container">
+      <div class="row">
+        <div class="col-s-4 col-4">
           
         </div>
-      </div>
-      <div class="col-s-1 col-1">
-        <button id="clearlocalstorage" onclick="clearaddress();"> clear location</button>
-      </div>
-      <div class="col-s-4 col-4"></div>
-    </div>
-    <div id="addressdiv" class="center col-s-12 col-12 row">
-      <table id="address">
-        <tr>
-          <td class="label">Street address</td>
-          <td class="slimField"><input class="field" id="street_number"
-               disabled="true"></td>
-          <td class="wideField" colspan="2"><input class="field" id="route"
-              disabled="true"></td>
-        </tr>
-        <tr>
-          <td class="label">City</td>
-          <td class="wideField" colspan="3"><input class="field" id="locality"
-              disabled="true"></td>
-        </tr>
-        <tr>
-          <td class="label">State</td>
-          <td class="slimField"><input class="field"
-              id="administrative_area_level_1" disabled="true"></td>
-          <td class="label">Zip code</td>
-          <td class="wideField"><input class="field" id="postal_code"
-              disabled="true"></td>
-        </tr>
-        <tr>
-          <td class="label">Country</td>
-          <td class="wideField" colspan="3"><input class="field"
-              id="country" disabled="true"></td>
-        </tr>
-      </table>
-    </div>
-    <div class="col-s-12 col-12">
-      
-      <div id="elevation"></div>
-      <div id="mapgame"></div>
-      <div id="earthquake"></div>
-      <div id="traffic"></div>
-      <div id="streetview"></div>
-    </div>
-    <div class="row">
-      <div class="col-s-1 col-1">&nbsp;</div>
-      <div class="col-s-5 col-5 inline">
-        <div id="style-selector-control"  class="map-control">
-          <select id="style-selector" class="selector-control">
-            <option value="default">Default</option>
-            <option value="night">Night mode</option>
-           <!--<option value="terrain">Terrain mode</option>-->
-            <option value="hiding">Hide features</option>
-          </select>
+        <div class="col-s-3 col-3" id="addressbar">
+          <div id="locationField">
+            <input id="autocomplete" placeholder="Enter your address"
+              onFocus="geolocate()" type="text">
+            
+          </div>
         </div>
-        <div id="map"></div>    
-        <script src="./map.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8H0qq1jVLjpb8RZaP0gC9PiDyVhx8JzU&libraries=geometry,places&callback=initialize"
-            async defer></script>
+        <div class="col-s-1 col-1">
+          <button id="clearlocalstorage" onclick="clearaddress();"> clear location</button>
+        </div>
+        <div class="col-s-4 col-4"></div>
       </div>
-
-      <div class="col-s-5 col-5 inline"> 
-
-        <iframe id="windymap" class="fullwidth"  src="https://embed.windy.com/embed2.html?lat=40.650&lon=-112.015&zoom=5&level=surface&overlay=wind&menu=&message=true&marker=true&calendar=&pressure=true&type=map&location=coordinates&detail=true&detailLat=40.650&detailLon=-112.015&metricWind=default&metricTemp=default" frameborder="0"></iframe>
+      <div id="addressdiv" class="center col-s-12 col-12 row">
+        <table id="address">
+          <tr>
+            <td class="label">Street address</td>
+            <td class="slimField"><input class="field" id="street_number"
+                 disabled="true"></td>
+            <td class="wideField" colspan="2"><input class="field" id="route"
+                disabled="true"></td>
+          </tr>
+          <tr>
+            <td class="label">City</td>
+            <td class="wideField" colspan="3"><input class="field" id="locality"
+                disabled="true"></td>
+          </tr>
+          <tr>
+            <td class="label">State</td>
+            <td class="slimField"><input class="field"
+                id="administrative_area_level_1" disabled="true"></td>
+            <td class="label">Zip code</td>
+            <td class="wideField"><input class="field" id="postal_code"
+                disabled="true"></td>
+          </tr>
+          <tr>
+            <td class="label">Country</td>
+            <td class="wideField" colspan="3"><input class="field"
+                id="country" disabled="true"></td>
+          </tr>
+        </table>
       </div>
-      <div class="col-s-1 col-1">&nbsp;</div>
+      <div class="col-s-12 col-12">
+        
+        <div id="elevation"></div>
+        <div id="mapgame"></div>
+        <div id="earthquake"></div>
+        <div id="traffic"></div>
+        <div id="streetview"></div>
+      </div>
+      <div class="row">
+        <div class="col-s-1 col-1">&nbsp;</div>
+        <div class="col-s-5 col-5 inline">
+          <div id="style-selector-control"  class="map-control">
+            <select id="style-selector" class="selector-control">
+              <option value="default">Default</option>
+              <option value="night">Night mode</option>
+             <!--<option value="terrain">Terrain mode</option>-->
+              <option value="hiding">Hide features</option>
+            </select>
+          </div>
+          <div id="map"></div>    
+          <script src="./map.js"></script>
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8H0qq1jVLjpb8RZaP0gC9PiDyVhx8JzU&libraries=geometry,places&callback=initialize"
+              async defer></script>
+        </div>
+
+        <div class="col-s-5 col-5 inline"> 
+
+          <iframe id="windymap" class="fullwidth"  src="https://embed.windy.com/embed2.html?lat=40.650&lon=-112.015&zoom=5&level=surface&overlay=wind&menu=&message=true&marker=true&calendar=&pressure=true&type=map&location=coordinates&detail=true&detailLat=40.650&detailLon=-112.015&metricWind=default&metricTemp=default" frameborder="0"></iframe>
+        </div>
+        <div class="col-s-1 col-1">&nbsp;</div>
+      </div>
     </div>
    </body>
 </html>
